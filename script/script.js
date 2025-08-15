@@ -1,36 +1,84 @@
-function getUserInput(){
-    return prompt("Please input either Rock, Paper or Scissors.");
+const rockButtonUser = document.querySelector('.button-rock');
+const paperButtonUser = document.querySelector('.button-paper');
+const scissorsButtonUser = document.querySelector('.button-scissors');
+
+const rockButtonComputer = document.querySelector('#rock-computer');
+const paperButtonComputer = document.querySelector('#paper-computer');
+const scissorsButtonComputer = document.querySelector('#scissors-computer');
+let userScore = 0;
+let computerScore = 0;
+const playerScore = document.querySelector('.player-score');
+const computerScoreOutput = document.querySelector('.computer-score');
+const resultOutput = document.querySelector('.container-text');
+
+const buttonsUser = {
+    rock: rockButtonUser,
+    paper: paperButtonUser,
+    scissors: scissorsButtonUser
+};
+
+const buttonsComputer = {
+    rock: rockButtonComputer,
+    paper: paperButtonComputer,
+    scissors: scissorsButtonComputer
+};
+
+function generateComputerChoice() {
+    const choices = ['rock', 'paper', 'scissors'];
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomIndex];
 }
 
-// 1 - rock, 2 - paper, 3 - scissor
-function generateComputerInput(){
-   return Math.floor(Math.random() * 3) + 1;
+
+function resetStyles() {
+    Object.values(buttonsUser).forEach(btn => btn.style.backgroundColor = 'transparent');
+    Object.values(buttonsComputer).forEach(btn => btn.style.backgroundColor = 'transparent');
 }
 
-let userWinCount = parseInt(0);
-let computerWinCount = parseInt(0);
-function playRound(){
+
+function highlightChoices(userChoice, computerChoice, result) {
+    if (result === 'draw') {
+        buttonsUser[userChoice].style.backgroundColor = 'orange';
+        buttonsComputer[computerChoice].style.backgroundColor = 'orange';
+    } else if (result === 'user') {
+        buttonsUser[userChoice].style.backgroundColor = 'green';
+        buttonsComputer[computerChoice].style.backgroundColor = 'red';
+    } else {
+        buttonsUser[userChoice].style.backgroundColor = 'red';
+        buttonsComputer[computerChoice].style.backgroundColor = 'green';
+    }
+}
+
+
+function playGame(userChoice) {
+    resetStyles();
     
-    let userInput = String(getUserInput()).toLowerCase();
-    const computerInput = generateComputerInput();
-    if((userInput == 'rock' && computerInput == 1) || (userInput == 'paper' && computerInput == 2) || (userInput == 'scissors' && computerInput == 3)){
-        console.log("DRAW!");
+    const computerChoice = generateComputerChoice();
+    let result;
+
+    if (userChoice === computerChoice) {
+        result = 'draw';
+        resultOutput.textContent = "DRAW!";
+    } else if (
+        (userChoice === 'rock' && computerChoice === 'scissors') ||
+        (userChoice === 'scissors' && computerChoice === 'paper') ||
+        (userChoice === 'paper' && computerChoice === 'rock')
+    ) {
+        result = 'user';
+        resultOutput.textContent = "USER WINS!";
+        userScore++;
+        playerScore.textContent = userScore;
+    } else {
+        result = 'computer';
+        resultOutput.textContent = "COMPUTER WINS!";
+        computerScore++;
+        computerScoreOutput.textContent = computerScore;
     }
-    else if((userInput == 'rock' && computerInput == 3) || (userInput == 'paper' && computerInput == 1) || (userInput == 'scissors' && computerInput == 1)){
-            console.log("USER WINS!!")
-            userWinCount = userWinCount + 1;
-            console.log(`User: ${userWinCount} || Computer: ${computerWinCount}.` )
-    }
-    else{
-        console.log("COMPUTER WINS!!")
-        computerWinCount++;
-         console.log(`User: ${userWinCount} || Computer: ${computerWinCount}.` )
-    }
-   
+
+    highlightChoices(userChoice, computerChoice, result);
 }
-function playGame(roundsNumber){
-   for(let i = 0; i < roundsNumber; i++){
-     playRound();
-   }
-}
-playGame(5);
+
+
+rockButtonUser.addEventListener('click', () => playGame('rock'));
+paperButtonUser.addEventListener('click', () => playGame('paper'));
+scissorsButtonUser.addEventListener('click', () => playGame('scissors'));
