@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissor Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
+    <div class="container">
+        <!--Result-->
+        <div class="first-container">
+        <div class="container-title">Rock Paper Scissors Game!</div>
+        <div class="score-container">
+            <div class="player-container">
+            <div class="player-name">Player</div>
+            <div class="player-score">0</div>
+            </div>
+            <div class="computer-container">
+                <div class="computer-name">Computer</div>
+                <div class="computer-score">0</div>
+            </div>
+        </div>
+      </div><!--Player-->
+      <div class="second-container">
+        <div class="second-container-title">Player</div>
+        <div class="container-play-options">
+            <button class="button-rock"><i class="far fa-hand-rock"></i></button>
+            <button class="button-paper"><i class="far fa-hand-paper"></i></button>
+            <button class="button-scissors">  <i class="far fa-hand-scissors"></i></button>
+        </div>
+      </div> <!--Computer-->
+       <div class="third-container">
+        <div class="third-container-title">Computer</div>
+        <div class="container-play-options">
+            <button id="rock-computer" class="button-rock"><i class="far fa-hand-rock"></i></button>
+            <button id="paper-computer" class="button-paper"><i class="far fa-hand-paper"></i></button>
+            <button id="scissors-computer" class="button-scissors">  <i class="far fa-hand-scissors"></i></button>
+        </div>
+      </div>
+      <div class="footer-container">
+        <div class="container-text">Play Game!</div>
+      </div>
+    </div>
+    
     <script src="./script/script.js"></script>
 </body>
 </html>
+                
+          
+           
+             
+              
+    
