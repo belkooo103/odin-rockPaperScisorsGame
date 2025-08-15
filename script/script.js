@@ -5,8 +5,10 @@ const scissorsButtonUser = document.querySelector('.button-scissors');
 const rockButtonComputer = document.querySelector('#rock-computer');
 const paperButtonComputer = document.querySelector('#paper-computer');
 const scissorsButtonComputer = document.querySelector('#scissors-computer');
+
 let userScore = 0;
 let computerScore = 0;
+
 const playerScore = document.querySelector('.player-score');
 const computerScoreOutput = document.querySelector('.computer-score');
 const resultOutput = document.querySelector('.container-text');
